@@ -5,16 +5,27 @@ export default class RepLogCreator extends Component {
 
     constructor(props) {
         super(props);
+
+        this.quantityInput = React.createRef();
+        this.itemSelect = React.createRef();
+
         this.handleFormSubmit = this.handleFormSubmit.bind(this);
     }
 
     handleFormSubmit(event) {
         event.preventDefault();
         const { onNewItemSubmit } = this.props;
-        console.log('I love when a good form submits!');
-        console.log(event.target.elements.namedItem('reps').value);
 
-        onNewItemSubmit('Big Fat Cat', event.target.elements.namedItem('reps').value);
+        const quantityInput = this.quantityInput.current;
+        const itemSelect = this.itemSelect.current;
+
+        onNewItemSubmit(
+            itemSelect.options[itemSelect.selectedIndex].text,
+            quantityInput.value
+        );
+
+        itemSelect.selectedIndex = 0;
+        quantityInput.value = '';
     }
 
     render() {
@@ -25,7 +36,7 @@ export default class RepLogCreator extends Component {
                         What did you lift?
                     </label>
                     <select id="rep_log_item"
-                            name="item"
+                            ref={this.itemSelect}
                             required="required"
                             className="form-control">
                         <option value="">What did you lift?</option>
@@ -41,7 +52,8 @@ export default class RepLogCreator extends Component {
                         How many times?
                     </label>
                     <input type="number" id="rep_log_reps"
-                           name="reps" required="required"
+                           ref={this.quantityInput}
+                           required="required"
                            placeholder="How many times?"
                            className="form-control"/>
                 </div>
