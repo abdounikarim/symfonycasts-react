@@ -16,7 +16,7 @@ export default class RepLogList extends Component {
                     <tr
                         key={repLog.id}
                         className={highlightedRowId === repLog.id ? 'info' : ''}
-                        onClick={(event) => this.handleRowClick(repLog.id, event)}
+                        onClick={() => onRowClick(repLog.id)}
                     >
                         <td>{repLog.itemLabel}</td>
                         <td>{repLog.reps}</td>
