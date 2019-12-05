@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 
 export default class RepLogList extends Component {
     render() {
-        const { highlightedRowId } = this.props;
+        const { highlightedRowId, onRowClick } = this.props;
 
         const repLogs = [
             { id: 1, reps: 25, itemLabel: 'My Laptop', totalWeightLifted: 112.5 },

@@ -7,12 +7,12 @@ export default class RepLogApp extends Component {
 
         this.state = {
             highlightedRowId: null
-        }
+        };
+        this.handleRowClick = this.handleRowClick.bind(this);
     }
 
     handleRowClick(repLogId, event) {
         this.setState({highlightedRowId: repLogId});
-        this.handleRowClick = this.handleRowClick.bind(this);
     }
 
     render() {
