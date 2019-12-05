@@ -17,20 +17,17 @@ export default class RepLogApp extends Component {
         this.handleRowClick = this.handleRowClick.bind(this);
     }
 
-    handleRowClick(repLogId, event) {
+    handleRowClick(repLogId) {
         this.setState({highlightedRowId: repLogId});
     }
 
     render() {
-        const { highlightedRowId, repLogs } = this.state;
-        const { withHeart } = this.props;
 
         return (
             <RepLogs
-                highlightedRowId={highlightedRowId}
-                withHeart={withHeart}
+                {...this.props}
+                {...this.state}
                 onRowClick={this.handleRowClick}
-                repLogs={repLogs}
             />
         )
     }
