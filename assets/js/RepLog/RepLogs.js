@@ -16,11 +16,20 @@ function calculateTotalWeightLifted(repLogs) {
 const calculateTotalWeightFancier = repLogs => repLogs.reduce((total, log) => total + log.totalWeightLifted, 0);
 
 export default function RepLogs(props) {
-    const { withHeart, highlightedRowId, onRowClick, repLogs } = props;
+    const { withHeart, highlightedRowId, onRowClick, repLogs, onNewItemSubmit } = props;
 
     let heart = '';
     if(withHeart) {
         heart = <span>❤️</span>;
+    }
+
+    function handleFormSubmit(event) {
+        event.preventDefault();
+
+        console.log('I love when a good form submits!');
+        console.log(event.target.elements.namedItem('reps').value);
+
+        onNewItemSubmit('Big Fat Cat', event.target.elements.namedItem('reps').value);
     }
 
     return (
@@ -50,7 +59,7 @@ export default function RepLogs(props) {
                 </tr>
                 </tfoot>
             </table>
-            <form className="form-inline">
+            <form className="form-inline" onSubmit={handleFormSubmit}>
                 <div className="form-group">
                     <label className="sr-only control-label required" htmlFor="rep_log_item">
                         What did you lift?
@@ -87,5 +96,6 @@ RepLogs.propTypes = {
     withHeart: PropTypes.bool,
     highlightedRowId: PropTypes.any,
     onRowClick: PropTypes.func.isRequired,
-    repLogs: PropTypes.array.isRequired
+    repLogs: PropTypes.array.isRequired,
+    onNewItemSubmit: PropTypes.func.isRequired,
 };
