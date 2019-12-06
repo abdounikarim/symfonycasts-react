@@ -16,20 +16,21 @@ export default class RepLogApp extends Component {
             ]
         };
         this.handleRowClick = this.handleRowClick.bind(this);
-        this.handleNewItemSubmit = this.handleNewItemSubmit.bind(this);
+        this.handleAddRepLog = this.handleAddRepLog.bind(this);
     }
 
-    handleNewItemSubmit(itemLabel, reps)
+    handleAddRepLog(itemLabel, reps)
     {
-        const repLogs = this.state.repLogs;
         const newRep = {
             id: uuid(),
             reps: reps,
             itemLabel: itemLabel,
             totalWeightLifted: Math.floor(Math.random() * 50)
         };
-        repLogs.push(newRep);
-        this.setState({repLogs: repLogs});
+        this.setState(prevState => {
+            const newRepLogs= [...prevState.repLogs, newRep];
+            return {repLogs: newRepLogs};
+        });
     }
 
     handleRowClick(repLogId) {
@@ -43,7 +44,7 @@ export default class RepLogApp extends Component {
                 {...this.props}
                 {...this.state}
                 onRowClick={this.handleRowClick}
-                onNewItemSubmit={this.handleNewItemSubmit}
+                onAddRepLog={this.handleAddRepLog}
             />
         )
     }
