@@ -9,7 +9,7 @@
     "eslint-plugin-react": "^7.14.3",
     "font-awesome": "4",
     "jquery": "^3.5.0",
-    "node-sass": "^4.7.2",
+    "node-sass": "^4.13.1",
     "prop-types": "^15.7.2",
     "react": "^16.9.0",
     "react-dom": "^16.9.0",
